@@ -2,7 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native'; // Añade ScrollView
 import { useState } from 'react';
 import REBRP61COMP from './src/components/REBRP6-1COMP';
-import ChecklistSent from './src/components/elements/checklist';
 
 export default function App() { // Cambiado el nombre a "App" en lugar de "app"
   const [indexColor, SetKey] = useState(0);
