@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View,TextInput } from 'react-native';
 import InputText from './elements/inputText';
 import { SelectList } from 'react-native-dropdown-select-list';
+import Uno from './recuadros/Uno';
+import Dos from './recuadros/Dos'
 
 export default function REBRP61COMP() {
     const [checkBoxStates, setCheckBoxStates] = useState([false, false]);
@@ -15,7 +17,6 @@ export default function REBRP61COMP() {
     const [text7, onChangeText7] = React.useState('');
     const [text8, onChangeText8] = React.useState('');
 
-    const elementosIzq1 = ['Lote Nr.','Lote Nr','Nr de Envases','Patente Camión', 'Cliente','Peso neto', 'Peso bruto','Tara'];
     const elementosizq2 = ['JCManzana','JCPera','JCFrambuesa','JCDurazno','Aroma','Manz Cloudy','JCFrutilla'];
     const elementosDer2 = ['JCCiruelas secas','JCUva','JCCiruela','Pasta Tomate','Pulpa Manzana','Pulpa Durazno'];
     const elementosIzq3 = ['51,8','52','53,7','54,7','55','60','300','Flexi','Otro'];
@@ -23,121 +24,18 @@ export default function REBRP61COMP() {
     const elementosFinal  = ['REVISION PESO ETIQUETA DE ENVASADO', 'REVISION FECHA ETIQUETA DE ENVASADO']
 
 
-
-
-    const [mostrarInputOtro, setMostrarInputOtro] = React.useState(false);
-    const [Envio, setEnvio] = React.useState("");
-    const TipoDeEnvio = [
-        {key:'1', value:'Retiro Planta', },
-        {key:'2', value:'Embarque'},
-        {key:'3', value:'Otro'},
-    ]
-
-
-
-    const [mostrarInputOtroProducto, setMostrarInputOtroProducto] = React.useState(false);
-    const [producto, setProducto] = React.useState("");
-    const Producto = [
-        {key:'1', value:'JCManzana', },
-        {key:'2', value:'JCPera'},
-        {key:'3', value:'JCFrambuesa'},
-        {key:'4', value:'JCDurazno'},
-        {key:'5', value:'Aroma'},
-        {key:'6', value:'Manz Cloudy'},
-        {key:'7', value:'JCFrutilla'},
-        {key:'8', value:'Otro'},
-
-    ]
-
-    const [TipoDeEnvase, setTipoDeEnvase] = React.useState("");
-    const Envase = [
-        {key:'1', value:'T. Métalico', },
-        {key:'2', value:'B. Plástico'},
-        {key:'3', value:'Tote Bins'},
-        {key:'4', value:'Flexi/Iso Bag'},
-    ]
-  
   return (
+    <View>
+          <View style = {styles.Container}>
+            <Uno></Uno>
+          </View>
 
-    <View style = {styles.Container}>
-       <View style= {styles.firstContainer}>
-          
-          <Text style = {styles.titulo}>
-                Tipo de Envio
-          </Text>
-          <SelectList 
-          
-            boxStyles={styles.box}
-            dropdownStyles={styles.box}
-            setSelected={(val) => {setEnvio(val);
-              if(val === 'Otro') {
-                setMostrarInputOtro(true);
-              } 
-              else {
-                setMostrarInputOtro(false);
-              }
-              }} 
-            data={TipoDeEnvio} 
-            save="value"
-            />
-
-          {mostrarInputOtro && (<TextInput
-              style={styles.inputOtros}
-              onChangeText={onChangeText}
-              value={text}
-              placeholder="Especifique otro tipo de envio "
-              placeholderTextColor="#a9a9a9"
-              />
-            )}
-
-          <Text style = {styles.titulo}>Producto</Text>
-          <SelectList 
-            boxStyles={styles.box}
-            dropdownStyles={styles.box}
-            setSelected={(val) => {setProducto(val);
-              if(val === 'Otro') {
-                setMostrarInputOtroProducto(true);
-              } 
-              else {
-                setMostrarInputOtroProducto(false);
-              }
-            }}        
-            data={Producto} 
-            save="value"
-          />
-
-          
-          {mostrarInputOtroProducto && (
-            <TextInput
-              style={styles.inputOtros}
-              onChangeText={onChangeText}
-              value={text}
-              placeholder="Especifique otro producto "
-              placeholderTextColor="#a9a9a9"
-              />
-          )}
-
-          <View style = {{flexDirection: 'column'}}>
-              {elementosIzq1.map((elementosIzq1, index) => (
-              <InputText key={index} nombre={elementosIzq1} ancho ={"90%"} />
-              ))}
-
-          <Text style = {styles.titulo}>Producto</Text>
-          <SelectList 
-            boxStyles={styles.box}
-            dropdownStyles={styles.box}
-            setSelected={(val) => setTipoDeEnvase(val)}        
-            data={Envase} 
-            save="value"
-          />
-
-        </View>
-
-       </View>
-  
-
-
+          <View style = {styles.Container}>
+            <Dos></Dos>
+          </View>
+      
     </View>
+
 
 
 
@@ -147,6 +45,10 @@ export default function REBRP61COMP() {
     Container: {
       flex:1,
     },
+    containerDrop:{
+      paddingLeft: 10,
+    },
+    
     firstContainer:{
         borderWidth:1,
         width:'97%',
@@ -164,7 +66,7 @@ export default function REBRP61COMP() {
     titulo: {
       fontWeight: 'bold', 
       fontSize: 17,
-      paddingLeft:10,
+      paddingLeft:'1%',
       paddingBottom: 10,
       paddingRight:4,
     },
