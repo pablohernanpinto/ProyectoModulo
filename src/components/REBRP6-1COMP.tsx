@@ -3,7 +3,9 @@ import { StyleSheet, Text, View,TextInput } from 'react-native';
 import InputText from './elements/inputText';
 import { SelectList } from 'react-native-dropdown-select-list';
 import Uno from './recuadros/Uno';
-import Dos from './recuadros/Dos'
+import Dos from './recuadros/Dos';
+import Tres from './recuadros/Tres';
+import Cuatro from './recuadros/Cuatro';
 
 export default function REBRP61COMP() {
     const [checkBoxStates, setCheckBoxStates] = useState([false, false]);
@@ -32,6 +34,12 @@ export default function REBRP61COMP() {
 
           <View style = {styles.Container}>
             <Dos></Dos>
+          </View>
+          <View style = {styles.Container}>
+            <Tres></Tres>
+          </View>
+          <View style = {styles.Container}>
+            <Cuatro></Cuatro>
           </View>
       
     </View>

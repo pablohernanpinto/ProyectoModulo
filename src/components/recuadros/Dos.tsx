@@ -82,7 +82,7 @@ export default function Dos(){
 
           <View style = {{flexDirection: 'column'}}>
               {TermoList.map((TermoList, index) => (
-              <InputText key={index} nombre={TermoList} ancho ={"90%"} />
+              <InputText key={index} nombre={TermoList} ancho={"90%"} place={undefined} />
               ))}
           </View>
 
