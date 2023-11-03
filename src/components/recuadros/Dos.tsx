@@ -1,25 +1,18 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View,TextInput } from 'react-native';
-import { SelectList } from 'react-native-dropdown-select-list';
+import { StyleSheet, Text, View, } from 'react-native';
 import InputText from '../elements/inputText';
 import { MultipleSelectList } from 'react-native-dropdown-select-list'
 
 export default function Dos(){
+  const TermoList = ['Crop.','Lote Nr.','Envase Nr.','Día Producc', 'Container Nr.'];
 
-
-  const [text, onChangeText] = React.useState('');
-  const elementosIzq1 = ['Lote Nr.','Lote Nr','Nr de Envases','Patente Camión', 'Cliente','Peso neto', 'Peso bruto','Tara'];
-
-  
-  const [mostrarInputOtro, setMostrarInputOtro] = React.useState(false);
-  const [Envio, setEnvio] = React.useState("");
-  const TipoDeEnvio = [
-      {key:'1', value:'Retiro Planta', },
-      {key:'2', value:'Embarque'},
-      {key:'3', value:'Otro'},
+  const [opciones, setOpciones] = React.useState("");
+  const opcionesList = [
+      {key:'1', value:'Retiro de Muestras', },
+      {key:'2', value:'Análisis de muestras'},
   ]
 
-  const [mostrarInputOtroProducto, setMostrarInputOtroProducto] = React.useState(false);
+
   const [Revision, setRevision] = React.useState("");
   const RevisionList = [
       {key:'1', value:'Nombre del Producto', },
@@ -34,32 +27,12 @@ export default function Dos(){
   ]
 
   const [RequerimientosDeCliente, setRequerimientosDeCliente] = React.useState("");
-  const Envase = [
+  const RequerimientosDeClienteList = [
       {key:'1', value:'Marcas Requeridas por el Cliente', },
       {key:'2', value:'Bandas Requeridas por el Cliente'},
       {key:'3', value:'Etiquetas Requeridas por el Cliente'},
 
   ]
-
-  const [capacidadEnGals, setCapacidadEnGals] = React.useState("");
-  const capGals = [
-      {key:'1', value:'51,8', },
-      {key:'2', value:'52'},
-      {key:'3', value:'53,7'},
-      {key:'4', value:'54.7'},
-      {key:'5', value:'55', },
-      {key:'6', value:'60'},
-      {key:'7', value:'300'},
-      {key:'8', value:'Flexi'},
-      {key:'9', value:'Otro', },
-  ]
-
-  const [SelectMulti, setSelectMulti] = React.useState([]);
-  const SelectMultilist = [
-      {key:'1', value:'REVISION PESO ETIQUETA DE ENVASADO', },
-      {key:'2', value:'REVISION FECHA ETIQUETA DE ENVASADO'},
-  ]
-
 
   return(
       <View style= {styles.firstContainer}>
@@ -74,7 +47,7 @@ export default function Dos(){
 
           <View style = {styles.containerDrop}> 
             <Text style = {styles.titulo}>
-              Revision
+              Revision del estado
             </Text>
       
             <MultipleSelectList 
@@ -96,94 +69,39 @@ export default function Dos(){
             setSelected={(val) => setRequerimientosDeCliente(val)} 
             boxStyles={styles.box}
             dropdownStyles={styles.box}
-            data={RevisionList} 
+            data={RequerimientosDeClienteList} 
             save="value"
             label="Categories"
             />
           </View> 
-          
-          <View style = {styles.containerDrop}>
-
-            <Text style = {styles.titulo}>
-                  Tipo de Envio
-            </Text>
-            <SelectList 
-              boxStyles={styles.box}
-              dropdownStyles={styles.box}
-              setSelected={(val) => {setEnvio(val);
-                if(val === 'Otro') {
-                  setMostrarInputOtro(true);
-                } 
-                else {
-                  setMostrarInputOtro(false);
-                }
-                }} 
-              data={TipoDeEnvio} 
-              save="value"
-              />            
 
           
-          {mostrarInputOtro && (<TextInput
-              style={styles.inputOtros}
-              onChangeText={onChangeText}
-              value={text}
-              placeholder="Especifique otro tipo de envio "
-              placeholderTextColor="#a9a9a9"
-              />
-            )}
-          </View>
-            
-
+          <Text style = {[styles.titulo,{fontSize:18}]}>
+              Termoregistrador
+          </Text>
 
           <View style = {{flexDirection: 'column'}}>
-              {elementosIzq1.map((elementosIzq1, index) => (
-              <InputText key={index} nombre={elementosIzq1} ancho ={"90%"} />
+              {TermoList.map((TermoList, index) => (
+              <InputText key={index} nombre={TermoList} ancho ={"90%"} />
               ))}
+          </View>
 
-          <View style = {[styles.containerDrop, {paddingBottom:'1%'}]}>
 
-          <Text style = {styles.titulo}>Tipo de envase</Text>
-          <SelectList 
-            boxStyles={styles.box}
-            dropdownStyles={styles.box}
-            setSelected={(val) => setTipoDeEnvase(val)}        
-            data={Envase} 
-            save="value"
+                    
+          <Text style = {[styles.titulo,{fontSize:18}]}>
+              Contramuestras
+          </Text>
+
+          <View style = {styles.containerDrop}>           
+          <MultipleSelectList 
+          setSelected={(val) => setOpciones(val)} 
+          boxStyles={styles.box}
+          dropdownStyles={styles.box}
+          data={opcionesList} 
+          save="value"
+          label="revision"
           />
           </View>
-        </View>
-
-
-        <View style = {styles.containerDrop}>           
-            <Text style = {styles.titulo}>
-              Capacidad en gals
-            </Text>
-            <SelectList 
-              boxStyles={styles.box}
-              dropdownStyles={styles.box}
-              setSelected={(val) => {setCapacidadEnGals(val);
-                if(val === 'Otro') {
-                  setMostrarInputOtro(true);
-                } 
-                else {
-                  setMostrarInputOtro(false);
-                }
-                }} 
-              data={capGals} 
-              save="value"
-              />            
-
-          
-          {mostrarInputOtro && (<TextInput
-              style={styles.inputOtros}
-              onChangeText={onChangeText}
-              value={text}
-              placeholder="Especifique otro tipo gals "
-              placeholderTextColor="#a9a9a9"
-              />
-            )}
-          </View>
-
 
       </View>
   )
