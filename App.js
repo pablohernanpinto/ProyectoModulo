@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native'; // Añade ScrollView
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView,Image } from 'react-native'; // Añade ScrollView
 import { useState } from 'react';
 import REBRP61COMP from './src/components/REBRP6-1COMP';
+import REBP01 from './src/components/REBP-01';
 
 export default function App() { // Cambiado el nombre a "App" en lugar de "app"
   const [indexColor, SetKey] = useState(0);
-  const colors = ['#d2e1b1', '#e6e6fa'];
+  const colors = ['#f7f9f1', '#efeff7'];
   const backgroundColor = colors[indexColor] || 'a';
   const borderColorLeft = indexColor === 0 ? '#d2e1b1' : 'black';
   const borderColorRight = indexColor === 1 ? '#e6e6fa' : 'black';
@@ -17,7 +18,10 @@ export default function App() { // Cambiado el nombre a "App" en lugar de "app"
 
   return (
     <View style={[styles.container, { backgroundColor }]}>
-      <View style={{ flexDirection: 'row' }}>
+      <View style={{ alignItems: 'center',paddingBottom:'5%'}}> 
+        <Image source={require('./assets/logo-patagoniafresh.png')} />
+      </View>
+      <View style={{ flexDirection: 'row'}}>
 
         <TouchableOpacity
           onPress={() => section(0)}
@@ -35,6 +39,7 @@ export default function App() { // Cambiado el nombre a "App" en lugar de "app"
 
       <ScrollView> 
         <View>
+
           {visible === true &&
             <View style={styles.elementsOfPage}>
               <REBRP61COMP />
@@ -45,7 +50,7 @@ export default function App() { // Cambiado el nombre a "App" en lugar de "app"
 
           {visible === false &&
             <View style={styles.elementsOfPage}>
-              <Text>en este view hay que ir agregando los componentes de RE.BP-06</Text>
+              <REBP01></REBP01>
             </View>
           }
         </View>
@@ -66,7 +71,7 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   touchableStyleLeft: {
-    backgroundColor: '#d2e1b1',
+    backgroundColor: '#f9fdee',
     alignItems: 'flex-start',
     borderWidth: 3,
     margin: 3,
@@ -74,7 +79,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   touchableStyleRight: {
-    backgroundColor: '#e6e6fa',
+    backgroundColor: '#efeff7',
     alignItems: 'flex-end',
     margin: 3,
     borderWidth: 3,

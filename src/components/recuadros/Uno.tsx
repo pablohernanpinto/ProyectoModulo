@@ -32,7 +32,7 @@ export default function Uno(){
       {key:'8', value:'Otro'},
 
   ]
-
+  
   const [TipoDeEnvase, setTipoDeEnvase] = React.useState("");
   const Envase = [
       {key:'1', value:'T. Métalico', },
@@ -126,7 +126,7 @@ export default function Uno(){
 
           <View style = {{flexDirection: 'column'}}>
               {elementosIzq1.map((elementosIzq1, index) => (
-              <InputText key={index} nombre={elementosIzq1} ancho ={"90%"} />
+              <InputText key={index} nombre={elementosIzq1} ancho={"90%"} place={undefined} />
               ))}
 
           <View style = {[styles.containerDrop, {paddingBottom:'1%'}]}>

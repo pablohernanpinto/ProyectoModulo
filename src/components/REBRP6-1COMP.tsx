@@ -43,10 +43,6 @@ export default function REBRP61COMP() {
           </View>
       
     </View>
-
-
-
-
   )}
 
   const styles = StyleSheet.create({
